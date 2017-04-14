@@ -11,9 +11,7 @@ public class Star {
 	private int mass;		//mass available to consume in earth masses
 	
 	public Star(short x, short y, short z, byte type, byte size, String name){//constuctor
-		
-		System.out.println("Star() called with values: "+ x +" : "+ y +" : "+ z +" : "+ type +" : "+ size +" : "+name);
-		
+
 		this.x = x;
 		this.y = y;
 		this.z = z;

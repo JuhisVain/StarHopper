@@ -8,19 +8,10 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.Random;
 
-public class DatabaseHandler {//:(
-	/*
-	private static String url = "jdbc:mysql://localhost:3306/test";
-	private static String username = "root";
-	private static String password = "Juhis123";
-	*/
+public class DatabaseHandler {	
+
 	private Connection connection = null;
-	/*
-	private PreparedStatement selectStars = null;
-	private PreparedStatement insertStar = null;
-	private PreparedStatement insertPlayer = null;
-	*/
-	//private PreparedStatement truncTable = null;
+
 	private PreparedStatement insertGame = null;
 	private PreparedStatement selectStars = null;
 	private Statement statement = null;
@@ -29,30 +20,12 @@ public class DatabaseHandler {//:(
 	
 	Random rand = new Random();
 
-
-	
 	public DatabaseHandler(){//Functionality moved to tryConnection()
 		
-		//System.out.println("AALALAALALALAALAL");
-		/*
-		try {
-			
-			//connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			selectStars = connection.prepareStatement("SELECT * FROM stars");
-
-			statement = connection.createStatement();
-			
-			insertGame = connection.prepareStatement("INSERT INTO stars VALUES (?,?,?,?,?,?,?)");
-
-		} catch (SQLException e){
-			e.printStackTrace();
-		} 
-		*/
 	}
 	
 	public void tryConnection(String url, String user, String password) throws SQLException{
 		
-
 		connection = DriverManager.getConnection(url, user, password);
 		selectStars = connection.prepareStatement("SELECT * FROM stars");
 		updateStar = connection.createStatement();
@@ -62,7 +35,6 @@ public class DatabaseHandler {//:(
 		insertGame = connection.prepareStatement("INSERT INTO stars VALUES (?,?,?,?,?,?,?)");
 		
 	}
-	
 	
 	public void store(Galaxy g){
 		
@@ -95,9 +67,6 @@ public class DatabaseHandler {//:(
 			
 			System.out.println("Store galaxy failure");
 		}
-		
-		
-		
 	}
 	
 	public void store(Star s){
@@ -112,7 +81,6 @@ public class DatabaseHandler {//:(
 				if (idToUse <= resultSet.getInt(1)){
 					idToUse = resultSet.getInt(1)+1;
 				}
-				
 			}
 
 			insertGame.setString(1, String.valueOf(idToUse));
@@ -133,7 +101,6 @@ public class DatabaseHandler {//:(
 			System.out.println("Store star failure");
 			
 		}
-		
 	}
 	
 	public void moveStar(){	//This is the "update" in CRUD since it's required. Used to "fix" custom galaxies
@@ -178,7 +145,6 @@ public class DatabaseHandler {//:(
 	public Galaxy getGalaxy(){
 		
 		System.out.println("getGalaxy()");
-		//Galaxy g;
 		Star[] stars;
 		ResultSet resultSet = null;
 		
@@ -187,22 +153,17 @@ public class DatabaseHandler {//:(
 		try{
 			
 			resultSet = selectStars.executeQuery();
-			
-			//System.out.println("herpaderpahuu: " + resultSet.toString());
-			
+
 			int length = 0;
 			while(resultSet.next()){	//size of galaxy
 				length = resultSet.getInt(1)+1;
 			}
-			
-			//resultSet.absolute(1);
+
 			resultSet.beforeFirst();
 
 			resultSet = null;
 			resultSet = selectStars.executeQuery();
-			
-			//System.out.println("l:"+length);
-			
+
 			stars = new Star[length];
 			int i = 0;
 			while(resultSet.next()){
@@ -228,9 +189,5 @@ public class DatabaseHandler {//:(
 		
 		
 	}
-	/*
-	public Player[] getPlayers(){
-		
-	}
-	*/
+
 }

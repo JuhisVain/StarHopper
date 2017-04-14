@@ -148,7 +148,11 @@ public class Communicator {
 		return player.length;
 	}
 	public Player getPlayer(int index){
-		return player[index];
+		try {
+			return player[index];
+		} catch (ArrayIndexOutOfBoundsException e){
+			return null;
+		} 
 	}
 	
 	//Database stuff:

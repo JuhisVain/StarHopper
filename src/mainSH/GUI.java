@@ -232,8 +232,7 @@ public class GUI {
 	}
 	
 	public class newGameWindow extends JFrame {	//menu panel -> file -> new game,     creates setup window for a new game
-		
-		//JFrame newGameFrame;	//what was this for?
+	
 		JButton newGameButton;
 		JTextField newStarAmount;
 		JLabel newGameLabel;
@@ -242,11 +241,9 @@ public class GUI {
 
 			super.setBounds(new Rectangle(0, 0, 400, 200));
 			super.getContentPane().setBounds(new Rectangle(0, 0, 400, 200));
-			//newGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			super.getContentPane().setLayout(null);
 			
 			newGameLabel = new JLabel("Amount of stars in new galaxy:");
-			//newGameLabel.setText("Amount of stars in new galaxy:");
 			newGameLabel.setOpaque(true);
 			newGameLabel.setBounds(50, 20, 500,50);
 			
@@ -273,7 +270,7 @@ public class GUI {
 					coms.newGame(Integer.parseInt(newStarAmount.getText()), 1);//player count = 1 for now
 					comboBox.removeAllItems();
 					updateShipBox();
-				} catch (Exception ex) {
+				} catch (NumberFormatException ex) {
 					newStarAmount.setText("30");
 				}
 				
@@ -327,12 +324,12 @@ public class GUI {
 			
 			userTF = new JTextField();
 			userTF.setBounds(85, 57, 280, 25);
-			userTF.setText("root");								//default
+			userTF.setText("root");	//default
 			super.add(userTF);
 			
 			pwTF = new JTextField();
 			pwTF.setBounds(85, 82, 280, 25);
-			pwTF.setText("");									//default
+			pwTF.setText("");	//default
 			super.add(pwTF);
 			
 			goButton = new JButton("Connect");
@@ -357,11 +354,8 @@ public class GUI {
 				} else {
 					infoLabel.setText("Connection failure!");
 				}
-				
 			}
-			
 		}
-		
 	}
 	
 	//The rabbit hole of animation starts here:
@@ -382,16 +376,11 @@ public class GUI {
 		
 	}
 	
-	public void callRepaint(){//for use with database loading
-		spaceG.repaint();
-	}
-	
 	private class PassTimeAnim implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			spaceG.repaint();
 			coms.passTime();
 		}
-		
 	}
 	
 	private class PassTimeBtnListen implements ActionListener{
@@ -401,6 +390,10 @@ public class GUI {
 		}
 	}
 	//Animation over.
+	
+	public void callRepaint(){//for use with database loading
+		spaceG.repaint();
+	}
 	
 	private void updateShipBox(){	//updates fleet selection combobox
 		try {
@@ -421,24 +414,27 @@ public class GUI {
 		private Star destStar;
 		
 		public void actionPerformed(ActionEvent e){
-			for (int i = 0; i < coms.getPlayer(0).getFleetCount(); i++){
-				try {
-					 if (coms.getPlayer(0).getFleet(i).getFleetName().equals(comboBox.getSelectedItem())){
-						 
-						 coms.getPlayer(0).getFleet(i).setDestination(destStar);
-						 lblFleetdestination.setText("Destination : "+coms.getPlayer(0).getFleet(i).getDestination().getName());
-						 
-					 }
-				} catch (Exception exc){
-					//do nothing
+			
+			try {
+			
+				for (int i = 0; i < coms.getPlayer(0).getFleetCount(); i++){
+					if (coms.getPlayer(0).getFleet(i).getFleetName().equals(comboBox.getSelectedItem())){
+
+						coms.getPlayer(0).getFleet(i).setDestination(destStar);
+						lblFleetdestination.setText("Destination : "+coms.getPlayer(0).getFleet(i).getDestination().getName());
+					}
 				}
+			}catch (NullPointerException npe){
+				System.out.println("NullPointer in TravelButtonListen");
+			}catch (ArrayIndexOutOfBoundsException exc){
+				System.out.println("ArrayIndexOutOfBounds in TravelButtonListen");
 			}
+			
 		} 
 		
 		public void setDestForButton(Star d){
 			destStar = d;
 		}
-		
 	}
 	
 	class ComboBoxListen implements ActionListener{	//listens to the fleet selection combobox
@@ -636,10 +632,8 @@ public class GUI {
 			g2d = (Graphics2D) g;
 			viewAngleInRad = (((double)viewAngle)/180)*Math.PI;
 			drawGalacticBackground();
-	
-			System.out.println("test 1 1 1 ");
 			
-			try {	//databasehandler breaks something for NO apparent reason...
+			try {	// if no galaxy initialized
 				coms.getGalaxy().getSingleStar(0).getName();
 			} catch (NullPointerException e){
 				return;
@@ -648,8 +642,6 @@ public class GUI {
 			}
 			
 	        for (int i = 0; i < coms.getGalaxy().getStarAmount(); i++){	//This is a mess but I've forgotten how it works so it can't be fixed
-	        	
-	        	
 	        	
 	        	double starX = coms.getGalaxy().getSingleStar(i).getX();	//these MUST BE DOUBLES
 	        	double starY = coms.getGalaxy().getSingleStar(i).getY();	//Actually they probably don't but let's just make sure everything works by making everything a double
