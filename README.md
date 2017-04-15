@@ -9,7 +9,7 @@ An extremely simple 3D engine and "game" where you can move a couple of fleets a
 **Installation:**
 ---
 - Download source & run in IDE
-- OR
+OR
 - Download StarHopper.jar & run
 
 
@@ -42,7 +42,7 @@ You will have to import after the following actions if you want to see the resul
 - Creator/Delete star to DB: Removes a star from the database.
 
 
-
+---
 
 
 Credits: Juho Vainio
