@@ -8,9 +8,11 @@ An extremely simple 3D engine and "game" where you can move a couple of fleets a
 
 **Installation:**
 ---
-- Download source & run in IDE
+- Download source & run in IDE.
+
 OR
-- Download StarHopper.jar & run
+
+- Download StarHopper.jar & run.
 
 
 
