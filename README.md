@@ -6,19 +6,19 @@ An extremely simple 3D engine and "game" where you can move a couple of fleets a
 
 
 
-Installation:
-
-Download source & run in IDE
-OR
-Download StarHopper.jar & run
+**Installation:**
+---
+- Download source & run in IDE
+- OR
+- Download StarHopper.jar & run
 
 
 
 ![ScreenShot](AllWindows.png)
 
 
-Usage:
-
+**Usage:**
+---
 Optional: From "File" in the menubar choose "Connect to DB" and add in the URL, user and password fields required data to make a connection and click the button. If successful, "Connection to database successful" will appear next to the button. If unsuccessful, the program will still (mostly) work without a database. The connection window can now be closed.
 
 From "File" in the menubar, select "New game", input desired amount of stars in the appearing window and click "Generate new galaxy" as many times as you want. Close (or don't) the galaxy creation window.
@@ -30,16 +30,16 @@ Press and hold down on the "Counter C..." & "Clockwise" buttons at the bottom ri
 note: Fleet 0 must always have a destination for "Pass time" to work.
 
 
-Database stuff:
+**Database stuff:**
 
--File/Export: Saves the current galaxy in the database (!!!OVERWRITEs the old!!!).
--File/Import: Loads the stored galaxy from the database.
+- File/Export: Saves the current galaxy in the database (!!!OVERWRITEs the old!!!).
+- File/Import: Loads the stored galaxy from the database.
 
 You will have to import after the following actions if you want to see the results:
 
--File/Fix galaxy in DB: Modifies the stored (custom) galaxy so that the graphics will mostly work correctly.
--Creator/Create star to DB: Adds a random star to the stored database.
--Creator/Delete star to DB: Removes a star from the database.
+- File/Fix galaxy in DB: Modifies the stored (custom) galaxy so that the graphics will mostly work correctly.
+- Creator/Create star to DB: Adds a random star to the stored database.
+- Creator/Delete star to DB: Removes a star from the database.
 
 
 
