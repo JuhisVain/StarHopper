@@ -23,6 +23,8 @@ OR
 ---
 Optional: From "File" in the menubar choose "Connect to DB" and add in the URL, user and password fields required data to make a connection and click the button. If successful, "Connection to database successful" will appear next to the button. If unsuccessful, the program will still (mostly) work without a database. The connection window can now be closed.
 
+The script to create the required table in your database is in "createAndInsert.sql".
+
 From "File" in the menubar, select "New game", input desired amount of stars in the appearing window and click "Generate new galaxy" as many times as you want. Close (or don't) the galaxy creation window.
 
 You can resize the window however you want, but it works best at a 4:3 ratio.
